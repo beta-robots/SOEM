@@ -67,9 +67,17 @@ add_library(soem STATIC
   ${OSHW_EXTRA_SOURCES})
 target_link_libraries(soem ${OS_LIBS})
 
-message("LIB_DIR: ${SOEM_LIB_INSTALL_DIR}")
+add_library(soem_shared SHARED
+  ${SOEM_SOURCES}
+  ${OSAL_SOURCES}
+  ${OSHW_SOURCES}
+  ${OSHW_EXTRA_SOURCES})
+target_link_libraries(soem_shared ${OS_LIBS})
+set_target_properties(soem_shared PROPERTIES OUTPUT_NAME soem)
 
-install(TARGETS soem DESTINATION ${SOEM_LIB_INSTALL_DIR})
+message("LIB_DIR: ${CMAKE_INSTALL_PREFIX}/${SOEM_LIB_INSTALL_DIR}")
+
+install(TARGETS soem soem_shared DESTINATION ${SOEM_LIB_INSTALL_DIR})
 install(FILES
   ${SOEM_HEADERS}
   ${OSAL_HEADERS}
