@@ -77,7 +77,7 @@ set_target_properties(soem_shared PROPERTIES OUTPUT_NAME soem)
 
 message("LIB_DIR: ${CMAKE_INSTALL_PREFIX}/${SOEM_LIB_INSTALL_DIR}")
 
-install(TARGETS soem soem_shared DESTINATION ${SOEM_LIB_INSTALL_DIR})
+install(TARGETS soem_shared DESTINATION ${SOEM_LIB_INSTALL_DIR})
 install(FILES
   ${SOEM_HEADERS}
   ${OSAL_HEADERS}
