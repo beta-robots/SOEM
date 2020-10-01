@@ -840,6 +840,16 @@ int ecx_readPDOmap(ecx_contextt *context, uint16 Slave, uint32 *Osize, uint32 *I
             {
                SMt_bug_add = 1; // try to correct, this works if the types are 0 1 2 3 and should be 1 2 3 4
             }
+			// Big endian error fix required for Summit series ---------
+			 else if((iSM == 2) && (tSM == 4))
+			 {
+				tSM = 3;
+			 }
+			 else if((iSM == 3) && (tSM == 3))
+			 {
+				tSM = 4;
+			 }
+			//----------------------------------------------------------
             if(tSM)
             {
                tSM += SMt_bug_add; // only add if SMt > 0
@@ -943,6 +953,16 @@ int ecx_readPDOmapCA(ecx_contextt *context, uint16 Slave, int Thread_n, uint32 *
          {
             SMt_bug_add = 1; // try to correct, this works if the types are 0 1 2 3 and should be 1 2 3 4
          }
+		 // Big endian error fix required for Summit series ---------
+		  else if((iSM == 2) && (tSM == 4))
+		  {
+			 tSM = 3;
+		  }
+		  else if((iSM == 3) && (tSM == 3))
+		  {
+			 tSM = 4;
+		  }
+		 //----------------------------------------------------------
          if(tSM)
          {
             tSM += SMt_bug_add; // only add if SMt > 0
